@@ -1,0 +1,24 @@
+<h2>最新文章</h2>
+<ul class="recent-posts">
+  {{ range first 5 (where .Site.RegularPages "Section" "blog") }}
+  <li>
+    <span>{{ .Date.Format "2006-01-02" }}</span>
+    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+  </li>
+  {{ end }}
+</ul>
+
+<style>
+.recent-posts {
+  list-style-type: none;
+  padding: 0;
+}
+.recent-posts li {
+  margin-bottom: 10px;
+}
+.recent-posts span {
+  color: #666;
+  margin-right: 10px;
+  font-size: 0.9em;
+}
+</style> 
