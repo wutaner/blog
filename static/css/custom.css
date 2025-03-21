@@ -1,0 +1,30 @@
+/* 重置 <pre> 标签的默认样式 */
+pre {
+    margin: 0; /* 移除浏览器默认外边距 */
+    padding: 0; /* 移除可能的默认内边距 */
+    background: none; /* 移除可能的默认背景 */
+}
+
+/* 调整 .highlight 类的样式 */
+.highlight {
+    padding: 15px 20px; /* 增加内边距，左右各20px，上下15px */
+    margin: 10px 20px; /* 上下外边距 10px，左右外边距 20px，与 body 的 padding 对齐 */
+    border-radius: 5px; /* 增加圆角 */
+    background-color: var(--code-background-color, #f5f5f5); /* 使用主题变量或默认背景色 */
+    overflow-x: auto; /* 确保长代码可以水平滚动 */
+    box-sizing: border-box; /* 确保内边距不会导致宽度溢出 */
+}
+
+/* 调整 <code> 标签的样式，避免内边距和背景色叠加 */
+.highlight code {
+    padding: 0; /* 移除 <code> 标签的内边距 */
+    background: none; /* 移除 <code> 标签的背景色，使用 .highlight 的背景 */
+    border-radius: 0; /* 移除 <code> 的圆角 */
+}
+
+/* 确保代码块与页面内容对齐 */
+body {
+    padding: 20px; /* 与 default.css 中的 body 样式保持一致 */
+    max-width: 800px; /* 与 default.css 中的 --width 变量保持一致 */
+    margin: 0 auto; /* 居中对齐 */
+}
