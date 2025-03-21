@@ -51,5 +51,5 @@ ignoreErrors = ["error-disable-taxonomy"]
   dateFormat = "2006-01-02"
 [markup]
   [markup.highlight]
-    style = "github" 
+    style = "tango" 
     noClasses = false
