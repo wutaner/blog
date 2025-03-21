@@ -7,19 +7,51 @@ pre {
 
 /* 调整 .highlight 类的样式 */
 .highlight {
-    padding: 15px 20px; /* 增加内边距，左右各20px，上下15px */
-    margin: 10px 20px; /* 上下外边距 10px，左右外边距 20px，与 body 的 padding 对齐 */
-    border-radius: 5px; /* 增加圆角 */
+    padding: 10px 15px; /* 调整内边距，与官方一致 */
+    margin: 0.5em 20px; /* 上下外边距 0.5em，左右外边距 20px，与 body 的 padding 对齐 */
+    border-radius: 3px; /* 与 default.css 保持一致 */
     background-color: var(--code-background-color, #f5f5f5); /* 使用主题变量或默认背景色 */
     overflow-x: auto; /* 确保长代码可以水平滚动 */
     box-sizing: border-box; /* 确保内边距不会导致宽度溢出 */
+    line-height: 1.5; /* 设置行高，提升代码可读性 */
 }
 
-/* 调整 <code> 标签的样式，避免内边距和背景色叠加 */
+/* 深色模式下的背景色 */
+@media (prefers-color-scheme: dark) {
+    .highlight {
+        background-color: var(--code-background-color, #1e1e1e); /* 深色模式下使用更柔和的背景色 */
+    }
+}
+
+/* 调整 <code> 标签的样式 */
 .highlight code {
     padding: 0; /* 移除 <code> 标签的内边距 */
     background: none; /* 移除 <code> 标签的背景色，使用 .highlight 的背景 */
     border-radius: 0; /* 移除 <code> 的圆角 */
+    font-family: 'Consolas', 'Monaco', 'Fira Code', monospace; /* 使用更适合代码的等宽字体 */
+    font-size: 0.95em; /* 略微减小字体大小，提升可读性 */
+}
+
+/* 优化代码高亮的颜色，接近官方效果 */
+.highlight .k { /* 关键字，例如 var */
+    color: #f92672; /* 红色，与官方类似 */
+    font-weight: bold;
+}
+.highlight .s { /* 字符串，例如 "hello!" */
+    color: #a6e22e; /* 绿色，与官方一致 */
+}
+.highlight .c { /* 注释 */
+    color: #75715e; /* 灰色，略微偏黄 */
+    font-style: italic;
+}
+.highlight .nv { /* 变量名 */
+    color: #e6db74; /* 黄色 */
+}
+.highlight .nt { /* 标签名，例如 YAML 中的键 */
+    color: #f92672; /* 红色 */
+}
+.highlight .l { /* 字面值，例如 true/false */
+    color: #ae81ff; /* 紫色 */
 }
 
 /* 确保代码块与页面内容对齐 */
