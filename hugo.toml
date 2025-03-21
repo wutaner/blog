@@ -52,4 +52,4 @@ ignoreErrors = ["error-disable-taxonomy"]
 [markup]
   [markup.highlight]
     style = "tango" 
-    noClasses = false
+    noClasses = true
