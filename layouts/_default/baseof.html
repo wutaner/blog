@@ -17,6 +17,8 @@
 
   {{- partial "style.html" . -}}
 
+  {{ if in .Content "class=\"chroma\"" }}<link rel="stylesheet" href="/css/default.min.css">{{ end }}
+
   <!-- A partial to be overwritten by the user.
   Simply place a custom_head.html into
   your local /layouts/partials-directory -->

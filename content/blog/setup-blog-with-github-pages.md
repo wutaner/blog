@@ -1,7 +1,6 @@
 ---
 title: "使用 GitHub Pages 和 Cloudflare 搭建个人博客"
 date: 2024-03-20
-weight: 1
 ---
 
 今天我成功地使用 GitHub Pages 和 Cloudflare 搭建了这个博客。在这篇文章中，我将分享整个过程中的经验和注意事项。
@@ -30,7 +29,7 @@ Hugo 配置文件 `hugo.toml` 中的关键设置：
 ```toml
 baseURL = "https://wutaner.com"
 title = "wutaner"
-theme = 'hugo-bearblog'
+theme = 'hugo-bearblog-testlongzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz'
 languageCode = "zh-CN"
 ```
 

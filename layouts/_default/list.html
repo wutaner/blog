@@ -1,11 +1,13 @@
 {{ define "main" }}
 <content>
+  <!-- <input type="text" id="searchInput" placeholder="Search..." style="margin-bottom:20px;padding:5px;width:100%;"/> -->
   {{ if .Data.Singular }}
   <h3 style="margin-bottom:0">Filtering for "{{ .Title }}"</h3>
   <small>
     <a href="{{ "blog" | relURL }}">Remove filter</a>
   </small>
   {{ end }}
+  <input type="text" id="searchInput" placeholder="Search..." style="width: 147px; margin-top: 0; font-size: 0.75em;">
   <ul class="blog-posts">
     {{ range .Pages }}
     <li>
@@ -34,5 +36,16 @@
       </div>
     </small>
     {{ end }}
+    <script>
+      document.getElementById('searchInput').addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase();
+        const posts = document.querySelectorAll('.blog-posts li');
+  
+        posts.forEach(post => {
+          const title = post.querySelector('a').textContent.toLowerCase();
+          post.style.display = title.includes(searchTerm) ? '' : 'none';
+        });
+      });
+    </script>
 </content>
 {{ end }}
