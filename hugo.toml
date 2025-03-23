@@ -2,13 +2,9 @@
 # Set to the URL for your site
 baseURL = "https://wutaner.com"
 
-# The name of this wonderful theme ;-).
-theme = 'hugo-bearblog'
-
 # Basic metadata configuration for your blog.
 title = "wutaner"
-author = "wutaner"
-copyright = "Copyright © 2024, wutaner."
+copyright = "Copyright © 2025, wutaner."
 languageCode = "zh-CN"
 
 # Generate a nice robots.txt for SEO
@@ -17,6 +13,7 @@ enableRobotsTXT = true
 # Generate "Bearblog"-like URLs !only!, see https://bearblog.dev/.
 disableKinds = ["taxonomy"]
 ignoreErrors = ["error-disable-taxonomy"]
+
 [permalinks]
   blog = "/:slug/"
   tags = "/blog/:slug"
@@ -24,6 +21,10 @@ ignoreErrors = ["error-disable-taxonomy"]
 [params]
   # The "description" of your website. This is used in the meta data of your generated html.
   description = "wutaner's blog"
+
+  # Author information
+  author = "wutaner"
+  email = "sjk131@outlook.com"
 
   # Hide the made with line
   hideMadeWithLine = true
@@ -49,3 +50,13 @@ ignoreErrors = ["error-disable-taxonomy"]
   # for details. An example TOML config that uses [ISO
   # 8601](https://en.wikipedia.org/wiki/ISO_8601) format:
   dateFormat = "2006-01-02"
+
+[markup.goldmark]
+  [markup.goldmark.renderer]
+    unsafe = true
+
+[markup]
+  [markup.highlight]
+    noClasses = false        # 必须设为false，使用CSS类名模式
+    style = 'default'        # 使用Bear Blog一致的默认主题配色
+
