@@ -23,10 +23,8 @@ async function loadUpvoteCount(postId) {
     
     if (data.hasVoted) {
       button.classList.add('upvoted');
-      button.disabled = true;
     } else {
       button.classList.remove('upvoted');
-      button.disabled = false;
     }
   } catch (error) {
     console.error('Error loading upvote count:', error);
@@ -44,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     
-    // 如果按钮是红色（已禁用），直接返回
+    // 如果按钮是红色（已点赞），直接返回
     if (button.classList.contains('upvoted')) {
       return;
     }
@@ -53,7 +51,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // 立即更新 UI
     button.classList.add('upvoted');
-    button.disabled = true;
     countElement.textContent = parseInt(countElement.textContent) + 1;
     
     // 发送请求，不等待响应
@@ -88,11 +85,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 .upvote-count {
   margin-top: -3px;
-}
-
-.upvote-button:disabled {
-  opacity: 0.7;
-  cursor: not-allowed;
 }
 </style>
 {{ end }} 
