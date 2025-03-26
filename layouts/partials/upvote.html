@@ -15,16 +15,14 @@ async function loadUpvoteCount(postId) {
   try {
     const response = await fetch(`{{ .Site.Params.workerUrl }}?id=${postId}`);
     const data = await response.json();
-    document.querySelector('.upvote-count').textContent = data.count;
     
-    // 如果点赞数大于0，检查是否已经点赞
-    if (data.count > 0) {
-      const hashId = generateHashId();
-      const checkResponse = await fetch(`{{ .Site.Params.workerUrl }}?id=${postId}&hash=${hashId}`);
-      const checkData = await checkResponse.json();
-      if (checkData.error === 'Already upvoted') {
-        document.querySelector('.upvote-button').classList.add('upvoted');
-      }
+    const countElement = document.querySelector('.upvote-count');
+    const button = document.querySelector('.upvote-button');
+    
+    countElement.textContent = data.count;
+    
+    if (data.hasVoted) {
+      button.classList.add('upvoted');
     }
   } catch (error) {
     console.error('Error loading upvote count:', error);
@@ -45,42 +43,26 @@ document.addEventListener('DOMContentLoaded', () => {
     button.disabled = true;
     
     try {
-      const hashId = generateHashId();
       const response = await fetch(form.action, {
         method: form.method,
         headers: {
-          'Content-Type': 'application/json',
-          'X-Hash-Id': hashId
+          'Content-Type': 'application/json'
         }
       });
       
       const data = await response.json();
       
-      if (data.error === 'Already upvoted') {
+      if (data.hasVoted) {
         button.classList.add('upvoted');
-        button.disabled = false;
-        return;
+        countElement.textContent = data.count;
       }
-      
-      const currentCount = parseInt(countElement.textContent);
-      countElement.textContent = currentCount + 1;
-      button.classList.add('upvoted');
     } catch (error) {
       console.error('Error upvoting:', error);
+    } finally {
       button.disabled = false;
-      button.classList.remove('upvoted');
-      countElement.textContent = currentCount;
     }
   });
 });
-
-function generateHashId() {
-  const year = new Date().getFullYear();
-  const encoder = new TextEncoder();
-  const data = encoder.encode(year.toString());
-  return Array.from(new Uint8Array(crypto.getRandomValues(new Uint8Array(32))))
-    .map(b => b.toString(16).padStart(2, '0')).join('');
-}
 </script>
 
 <style>
