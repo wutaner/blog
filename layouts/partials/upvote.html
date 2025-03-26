@@ -23,6 +23,8 @@ async function loadUpvoteCount(postId) {
     
     if (data.hasVoted) {
       button.classList.add('upvoted');
+    } else {
+      button.classList.remove('upvoted');
     }
   } catch (error) {
     console.error('Error loading upvote count:', error);
@@ -40,6 +42,9 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault();
     const countElement = button.querySelector('.upvote-count');
     
+    // 先更新 UI
+    button.classList.add('upvoted');
+    countElement.textContent = parseInt(countElement.textContent) + 1;
     button.disabled = true;
     
     try {
@@ -52,12 +57,14 @@ document.addEventListener('DOMContentLoaded', () => {
       
       const data = await response.json();
       
-      if (data.hasVoted) {
-        button.classList.add('upvoted');
+      // 如果请求失败，恢复 UI
+      if (!data.hasVoted) {
+        button.classList.remove('upvoted');
         countElement.textContent = data.count;
       }
     } catch (error) {
       console.error('Error upvoting:', error);
+      loadUpvoteCount(postId);
     } finally {
       button.disabled = false;
     }
