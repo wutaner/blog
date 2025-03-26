@@ -1,3 +1,29 @@
-  <!-- A partial to be overwritten by the user.
+<!-- A partial to be overwritten by the user.
   Simply place a custom_body.html into
   your local /layouts/partials-directory -->
+
+<!-- Image style configuration from Bear Blog
+     When img-style is set to true in the front matter,
+     all images in the page will be styled with:
+     - Fixed height and square aspect ratio
+     - Cover object-fit for proper image scaling
+     - Hover effect with smooth transition
+     This style is inspired by Bear Blog's image display style.
+-->
+{{ $params := .Page.Params }}
+{{ $imgStyle := index $params "img-style" | default false }}
+{{ if $imgStyle }}
+<style>
+img {
+    max-height: 350px;
+    aspect-ratio: 1;
+    object-fit: cover;
+    object-position: center;
+}
+img:hover {
+    transform: scale(1.5);
+    transition: 0.5s;
+}
+</style>
+{{ end }}
+

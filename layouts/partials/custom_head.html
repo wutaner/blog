@@ -1,3 +1,12 @@
 <!-- A partial to be overwritten by the user.
   Simply place a custom_head.html into
   your local /layouts/partials-directory -->
+
+
+<!-- Syntax highlighting stylesheet from Bear Blog
+     Automatically loads the default.min.css when code blocks
+     with class "chroma" are present in the content.
+     This stylesheet is from Bear Blog's default theme.
+-->
+{{ if in .Content "class=\"chroma\"" }}<link rel="stylesheet" href="/css/default.min.css">{{ end }}
+

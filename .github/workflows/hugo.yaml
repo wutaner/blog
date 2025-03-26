@@ -24,6 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       HUGO_VERSION: 0.121.2
+      UPVOTE_TOKEN: ${{ secrets.UPVOTE_TOKEN }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -45,6 +46,7 @@ jobs:
         env:
           HUGO_ENVIRONMENT: production
           TZ: Asia/Shanghai
+          UPVOTE_TOKEN: ${{ secrets.UPVOTE_TOKEN }}
         run: |
           hugo \
             --gc \

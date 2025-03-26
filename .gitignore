@@ -20,4 +20,6 @@ Thumbs.db
 # Hugo specific files
 public/
 resources/
-hugo.toml 
+
+# Obsidian specific files
+.obsidian/ 

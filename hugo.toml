@@ -27,7 +27,7 @@ ignoreErrors = ["error-disable-taxonomy"]
   email = "sjk131@outlook.com"
 
   # Hide the made with line
-  hideMadeWithLine = true
+  hideMadeWithLine = false
 
   # The path to your "favicon". This should be a square (at least 32px x 32px) png-file.
   # Hint: It's good practise to also put a "favicon.ico"-file into your "static"-folder.
@@ -51,6 +51,41 @@ ignoreErrors = ["error-disable-taxonomy"]
   # 8601](https://en.wikipedia.org/wiki/ISO_8601) format:
   dateFormat = "2006-01-02"
 
+  # Upvote Feature Configuration
+  # If you don't need the upvote feature, you can delete or comment out the following three lines
+  #
+  # 1. Create a Gist
+  #    - Visit https://gist.github.com
+  #    - Click "+" in the top right corner, select "New gist"
+  #    - Filename: upvotes.json
+  #    - Content: {}
+  #    - Select "Create public gist" (must be public)
+  #    - Click "Create gist"
+  #    - Copy the Gist ID (the string in the URL)
+  #
+  # 2. Create GitHub Token
+  #    - Visit https://github.com/settings/tokens
+  #    - Click "Generate new token (classic)"
+  #    - Name: blog-upvote (or any name you prefer)
+  #    - Select scopes: check "gist"
+  #    - Click "Generate token"
+  #    - Copy the generated token (Note: token will only be shown once!)
+  #
+  # 3. Set Repository Secret
+  #    - Go to your blog repository
+  #    - Click "Settings" -> "Secrets and variables" -> "Actions"
+  #    - Click "New repository secret"
+  #    - Name: UPVOTE_TOKEN
+  #    - Value: paste your GitHub Token
+  #
+  # 4. Configure hugo.toml
+  #    - Set enableUpvote = true
+  #    - Fill in your Gist ID
+  #    - Keep githubToken unchanged
+  enableUpvote = true
+  gistId = "663f1effa5f5ee8b7b72d0dccdec9508"
+  githubToken = "{{ getenv \"UPVOTE_TOKEN\" }}"
+
 [markup.goldmark]
   [markup.goldmark.renderer]
     unsafe = true
@@ -58,5 +93,4 @@ ignoreErrors = ["error-disable-taxonomy"]
 [markup]
   [markup.highlight]
     noClasses = false        # 必须设为false，使用CSS类名模式
-    style = 'default'        # 使用Bear Blog一致的默认主题配色
 
