@@ -11,6 +11,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    cursor: pointer;
 }
 .upvote-button.upvoted {
     color: salmon;
@@ -21,34 +22,47 @@
 </style>
 
 <script>
-document.querySelector('.upvote-form').addEventListener('submit', (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const button = form.querySelector('button');
-    const countElement = form.querySelector('.upvote-count');
+(function() {
+    const token = '{{ .Site.Params.githubToken }}';
+    const gistId = '{{ .Site.Params.gistId }}';
     
-    fetch('https://api.github.com/gists/{{ .Site.Params.gistId }}', {
-        method: 'PATCH',
-        headers: {
-            'Authorization': 'token {{ .Site.Params.githubToken }}',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            files: {
-                'upvotes.json': {
-                    content: JSON.stringify({
-                        [form.querySelector('input[name="uid"]').value]: parseInt(countElement.innerHTML) + 1
-                    })
-                }
+    document.querySelector('.upvote-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const button = form.querySelector('button');
+        const countElement = form.querySelector('.upvote-count');
+        const postId = form.querySelector('input[name="uid"]').value;
+        
+        try {
+            const response = await fetch(`https://api.github.com/gists/${gistId}`, {
+                method: 'PATCH',
+                headers: {
+                    'Authorization': `token ${token}`,
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/vnd.github.v3+json'
+                },
+                body: JSON.stringify({
+                    files: {
+                        'upvotes.json': {
+                            content: JSON.stringify({
+                                [postId]: parseInt(countElement.innerHTML) + 1
+                            })
+                        }
+                    }
+                })
+            });
+            
+            if (response.ok) {
+                button.disabled = true;
+                button.style.color = "salmon";
+                countElement.innerHTML = parseInt(countElement.innerHTML) + 1;
+            } else {
+                console.error('Upvote failed:', await response.json());
             }
-        })
-    }).then(r => {
-        if (r.ok) {
-            button.disabled = true;
-            button.style.color = "salmon";
-            countElement.innerHTML = parseInt(countElement.innerHTML) + 1;
+        } catch (error) {
+            console.error('Error during upvote:', error);
         }
-    }).catch(e => console.error('Upvote failed:', e));
-});
+    });
+})();
 </script>
 {{ end }} 
