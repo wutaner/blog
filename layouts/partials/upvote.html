@@ -23,8 +23,10 @@
 
 <script>
 (function() {
-    const token = '{{ .Site.Params.githubToken }}';
-    const gistId = '{{ .Site.Params.gistId }}';
+    const config = {
+        token: "{{ .Site.Params.githubToken }}",
+        gistId: "{{ .Site.Params.gistId }}"
+    };
     
     document.querySelector('.upvote-form').addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -34,10 +36,10 @@
         const postId = form.querySelector('input[name="uid"]').value;
         
         try {
-            const response = await fetch(`https://api.github.com/gists/${gistId}`, {
+            const response = await fetch(`https://api.github.com/gists/${config.gistId}`, {
                 method: 'PATCH',
                 headers: {
-                    'Authorization': `token ${token}`,
+                    'Authorization': `token ${config.token}`,
                     'Content-Type': 'application/json',
                     'Accept': 'application/vnd.github.v3+json'
                 },
