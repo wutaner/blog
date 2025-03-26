@@ -1,4 +1,2 @@
 {{ with .Site.Params.favicon }}
 <link rel="shortcut icon" href="{{ . | absURL }}" />{{ end }}
-
-<link rel="icon" type="image/x-icon" href="{{ .Site.BaseURL | replaceRE "^http:" "https:" }}images/favicon.png">

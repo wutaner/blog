@@ -1,11 +1,11 @@
 # Base URL used when generating links to your pages
 # Set to the URL for your site
-baseURL = "https://wutaner.com"
+baseURL = 'https://wutaner.github.io/'
 
 # Basic metadata configuration for your blog.
-title = "wutaner"
-copyright = "Copyright © 2025, wutaner."
-languageCode = "zh-CN"
+title = 'wutaner'
+copyright = 'Copyright © 2024 wutaner'
+languageCode = 'en-us'
 
 # Generate a nice robots.txt for SEO
 enableRobotsTXT = true
@@ -15,15 +15,15 @@ disableKinds = ["taxonomy"]
 ignoreErrors = ["error-disable-taxonomy"]
 
 [permalinks]
-  blog = "/:slug/"
-  tags = "/blog/:slug"
+  posts = '/:year/:month/:day/:slug/'
 
 [params]
   # The "description" of your website. This is used in the meta data of your generated html.
-  description = "wutaner's blog"
+  description = 'wutaner'
 
   # Author information
-  author = "wutaner"
+  author = 'wutaner'
+  authorlink = 'https://wutaner.com/'
   email = "sjk131@outlook.com"
 
   # Hide the made with line
@@ -31,7 +31,7 @@ ignoreErrors = ["error-disable-taxonomy"]
 
   # The path to your "favicon". This should be a square (at least 32px x 32px) png-file.
   # Hint: It's good practise to also put a "favicon.ico"-file into your "static"-folder.
-  favicon = "images/favicon.png"
+  favicon = '/favicon.ico'
 
   # These "images" are used for the structured data templates. This will show up, when
   # services like Twitter or Slack want to generate a preview of a link to your site.
@@ -52,39 +52,12 @@ ignoreErrors = ["error-disable-taxonomy"]
   dateFormat = "2006-01-02"
 
   # Upvote Feature Configuration
-  # If you don't need the upvote feature, you can delete or comment out the following three lines
-  #
-  # 1. Create a Gist
-  #    - Visit https://gist.github.com
-  #    - Click "+" in the top right corner, select "New gist"
-  #    - Filename: upvotes.json
-  #    - Content: {}
-  #    - Select "Create public gist" (must be public)
-  #    - Click "Create gist"
-  #    - Copy the Gist ID (the string in the URL)
-  #
-  # 2. Create GitHub Token
-  #    - Visit https://github.com/settings/tokens
-  #    - Click "Generate new token (classic)"
-  #    - Name: blog-upvote (or any name you prefer)
-  #    - Select scopes: check "gist"
-  #    - Click "Generate token"
-  #    - Copy the generated token (Note: token will only be shown once!)
-  #
-  # 3. Set Repository Secret
-  #    - Go to your blog repository
-  #    - Click "Settings" -> "Secrets and variables" -> "Actions"
-  #    - Click "New repository secret"
-  #    - Name: UPVOTE_TOKEN
-  #    - Value: paste your GitHub Token
-  #
-  # 4. Configure hugo.toml
-  #    - Set enableUpvote = true
-  #    - Fill in your Gist ID
-  #    - Keep githubToken unchanged
+  # If you don't need the upvote feature, you can delete or comment out the following line
+
   enableUpvote = true
-  gistId = "663f1effa5f5ee8b7b72d0dccdec9508"
-  githubToken = "{{ getenv \"UPVOTE_TOKEN\" }}"
+
+  # Worker URL
+  workerUrl = 'https://blog-upvote.sjk131.workers.dev'
 
 [markup.goldmark]
   [markup.goldmark.renderer]
@@ -92,5 +65,4 @@ ignoreErrors = ["error-disable-taxonomy"]
 
 [markup]
   [markup.highlight]
-    noClasses = false        # 必须设为false，使用CSS类名模式
-
+    noClasses = false

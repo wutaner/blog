@@ -48,6 +48,9 @@ jobs:
           TZ: Asia/Shanghai
           UPVOTE_TOKEN: ${{ secrets.UPVOTE_TOKEN }}
         run: |
+          echo "Environment variables:"
+          env | grep UPVOTE
+          echo "Building Hugo site..."
           hugo \
             --gc \
             --minify \
