@@ -24,8 +24,8 @@
 <script>
 (function() {
     const config = {
-        token: "{{ .Site.Params.githubToken }}",
-        gistId: "{{ .Site.Params.gistId }}"
+        token: {{ .Site.Params.githubToken | jsonify }},
+        gistId: {{ .Site.Params.gistId | jsonify }}
     };
     
     document.querySelector('.upvote-form').addEventListener('submit', async (e) => {
