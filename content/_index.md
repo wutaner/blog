@@ -1,9 +1,11 @@
-+++
-title = "wutaner's blog"
-+++
+---
+title: "wutaner's blog" # English Homepage Title
+---
 
-# Welcome to My Blog
+# Hi, I'm wutaner
 
-这里是我的个人博客，用来记录技术探索和学习心得。
+This is my personal blog where I document daily tech explorations and learning notes.
 
-{{< recent-posts >}}
+I modified the hugo-bearblog theme to create this blog template, trying my best to replicate [Bear Blog ʕ•ᴥ•ʔ](https://bearblog.dev/).
+
+{{< recent-posts >}} 

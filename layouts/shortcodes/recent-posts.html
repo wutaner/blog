@@ -1,24 +1,14 @@
-<h2>最新文章</h2>
-<ul class="recent-posts">
-  {{ range first 5 (where .Site.RegularPages "Section" "blog") }}
-  <li>
-    <span>{{ .Date.Format "2006-01-02" }}</span>
-    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-  </li>
-  {{ end }}
-</ul>
+<h3>My most recent posts</h3>
+<ul>
+  {{/* Get current language */}}
+  {{ $currentLang := .Site.Language.Lang }}
 
-<style>
-.recent-posts {
-  list-style-type: none;
-  padding: 0;
-}
-.recent-posts li {
-  margin-bottom: 10px;
-}
-.recent-posts span {
-  color: #666;
-  margin-right: 10px;
-  font-size: 0.9em;
-}
-</style> 
+  {{/* Filter pages by Section AND Language */}}
+  {{ $pages := where .Site.RegularPages "Section" "blog" }}
+  {{ $pages = where $pages "Lang" $currentLang }}
+
+  {{/* Get the first 5 pages of the current language */}}
+  {{ range first 5 $pages }}
+  <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+  {{- end }}
+</ul> 

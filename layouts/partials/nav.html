@@ -1,7 +1,22 @@
-<a href="{{ "" | relURL }}">Home</a>
+<a href="{{ "/" | relLangURL }}">Home</a>
 {{ range .Site.Menus.main }}
 <a href="{{ .URL }}">{{ .Name }}</a>
 {{ end }}
 {{ with .Site.GetPage "/blog" }}
-<a href="{{ "blog" | relURL }}">Blog</a>
+<a href="{{ "blog" | relLangURL }}">Blog</a>
 {{ end }}
+
+{{/* Language Switcher Start */}}
+{{ if .IsTranslated }}
+<span class="language-switcher-separator">|</span> {{/* Optional separator */}}
+<nav class="language-switcher" aria-label="Language switcher" style="display: inline;"> {{/* Add inline style */}}
+  {{ range .Translations }}
+    {{ if ne .Lang $.Site.Language.Lang }}
+      <a href="{{ .RelPermalink }}" lang="{{ .Lang }}" hreflang="{{ .Lang }}" rel="alternate">
+        {{ .Language.LanguageName }}
+      </a>
+    {{ end }}
+  {{ end }}
+</nav>
+{{ end }}
+{{/* Language Switcher End */}}
